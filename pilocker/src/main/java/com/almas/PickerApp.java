@@ -131,7 +131,9 @@ public class PickerApp extends ActionBarActivity {
 				public void onClick(View arg0) {
 					
 					// If You want to start the app
-					Settings.System.putString(getContentResolver(), "PiSC"+ Cursor, pkg);
+					PreferenceManager.getDefaultSharedPreferences(PickerApp.this).edit()
+							.putString("PiSC"+ Cursor, pkg)
+							.commit();
 					save("pkg",pkg);
 					
 					finish();

@@ -398,8 +398,7 @@ public class LockPatternActivity extends Activity {
          */
         boolean hapticFeedbackEnabled = false;
         try {
-            hapticFeedbackEnabled = Settings.System.getInt(
-                    getContentResolver(),
+            hapticFeedbackEnabled = PreferenceManager.getDefaultSharedPreferences(context).getInt(
                     Settings.System.HAPTIC_FEEDBACK_ENABLED, 0) != 0;
         } catch (Throwable t) {
             /*

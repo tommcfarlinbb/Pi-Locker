@@ -54,7 +54,7 @@ public class LockerService extends Service {
 	public void onCreate() {
 
 
-		mStatus = Settings.System.getInt(getBaseContext().getContentResolver(),"PiLocker", 0);
+		mStatus = PreferenceManager.getDefaultSharedPreferences(this).getInt("PiLocker", 0);
 
 		if (mStatus == 0) {
 			

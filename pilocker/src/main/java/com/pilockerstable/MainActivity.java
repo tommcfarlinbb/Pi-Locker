@@ -95,11 +95,13 @@ public class MainActivity extends ActionBarActivity {
 		
 		for (int i = 0; i < 4; i++) {
 
-			String s = Settings.System.getString(context.getContentResolver(), "PiSC" + i);
+			String s = PreferenceManager.getDefaultSharedPreferences(context).getString("PiSC" + i, null);
 
 			if (s == null | s == "") {
 
-				Settings.System.putString(context.getContentResolver(), "PiSC" + i, "com.pilockerstable");
+				PreferenceManager.getDefaultSharedPreferences(context).edit()
+						.putString("PiSC" + i, "com.pilockerstable")
+						.commit();
 
 			}
 		}
@@ -528,7 +530,9 @@ public class MainActivity extends ActionBarActivity {
 
 				if (start.isChecked()) {
 
-					Settings.System.putInt(getContentResolver(), "PiLocker", 1);
+					PreferenceManager.getDefaultSharedPreferences(context).edit()
+						.putInt("PiLocker", 1)
+						.commit();
 					startService(new Intent(MainActivity.this, LockerService.class));
 					save("on", "true");
 					secret.setEnabled(true);
@@ -538,7 +542,9 @@ public class MainActivity extends ActionBarActivity {
 
 				} else {
 
-					Settings.System.putInt(getContentResolver(), "PiLocker", 0);
+					PreferenceManager.getDefaultSharedPreferences(context).edit()
+						.putInt("PiLocker", 0)
+						.commit();
 					stopService(new Intent(MainActivity.this,LockerService.class));
 					startService(new Intent(MainActivity.this,LockerService.class));
 					save("on", "false");

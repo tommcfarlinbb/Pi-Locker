@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
@@ -62,7 +63,8 @@ public class ShortcutSettings extends ActionBarActivity {
 
 			mContent.addView(v, vv);
 
-			String Sys = Settings.System.getString(getContentResolver(), "PiSC" + bb);
+			String Sys = PreferenceManager.getDefaultSharedPreferences(ShortcutSettings.this)
+					.getString("PiSC" + bb, null);
 			ApplicationInfo ai = null;
 			PackageManager pm;
 			pm = getPackageManager();

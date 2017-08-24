@@ -41,7 +41,7 @@ public class ShortcutView extends LinearLayout {
 			final int b = i;
 			ApplicationInfo ai = null;
 			String sv = null;
-			String s = Settings.System.getString(context.getContentResolver(), "PiSC" + i);
+			String s = PreferenceManager.getDefaultSharedPreferences(context).getString("PiSC" + i, null);
 
 			if (s == null | s == "") {
 
@@ -67,12 +67,13 @@ public class ShortcutView extends LinearLayout {
 			addView(sc);
 			
 			}catch(Exception e){
-				Settings.System.putString(context.getContentResolver(), "PiSC"+b, "com.pilockerstable");
+				PreferenceManager.getDefaultSharedPreferences(context).edit()
+						.putString("PiSC"+b, "com.pilockerstable");
 			}
 			
 			sc.setOnClickListener(new OnClickListener() {
 				
-				String sv = Settings.System.getString( context.getContentResolver(), "PiSC" + b);
+				String sv = PreferenceManager.getDefaultSharedPreferences(context).getString("PiSC" + b, null);
 
 				@Override 
 				public void onClick(View arg0) {

@@ -10,6 +10,7 @@ package com.pilockerstable;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.WindowManager;
 
@@ -23,7 +24,7 @@ public class LockBoot extends BroadcastReceiver {
 	public void onReceive(Context context, Intent arg1) {
 
 		
-		mStatus = Settings.System.getInt(context.getContentResolver(), "PiLocker", 0);
+		mStatus = PreferenceManager.getDefaultSharedPreferences(context).getInt("PiLocker", 0);
 		
 		/**
 		 * 
