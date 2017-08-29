@@ -21,11 +21,11 @@ public class HomeKeyLocker {
     	
         if (mOverlayDialog == null) {
         	
-            mOverlayDialog = new OverlayDialog(activity);
-
-            mOverlayDialog.show();
-
-            mOverlayDialog.show();
+//            mOverlayDialog = new OverlayDialog(activity);
+//
+//            mOverlayDialog.show();
+//
+//            mOverlayDialog.show();
         }
     }
 

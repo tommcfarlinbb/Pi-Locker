@@ -195,9 +195,9 @@ public class Lock extends Activity implements OnGesturePerformedListener {
 
 				AudioIcon();
 				ConnectivityIcon();
-				callsCount();
-				messagesCount();
-				dateAndTime();
+//				callsCount();
+//				messagesCount();
+//				dateAndTime();
 
 				if (!Pin.equals("")) {
 
@@ -467,6 +467,7 @@ public class Lock extends Activity implements OnGesturePerformedListener {
 
 			}
 
+			if (cursor!=null)
 			cursor.close();
 		}
 
@@ -946,23 +947,23 @@ public class Lock extends Activity implements OnGesturePerformedListener {
 		wmanager = ((WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE));
 
 		// statusbar blocker configuration
-		WindowManager.LayoutParams localLayoutParams = new WindowManager.LayoutParams();
-		localLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
-		localLayoutParams.gravity = Gravity.TOP;
-		localLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
-				// this is to enable the notification to recieve touch events
-				WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
-				// Draws over status bar
-				WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
-
-		// set the size of statusbar blocker
-		localLayoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-		localLayoutParams.height = (int) (35 * getResources().getDisplayMetrics().scaledDensity);
-		localLayoutParams.format = PixelFormat.TRANSLUCENT;
-
-		view = new customViewGroup(this);
-		view.setBackgroundColor(0x33000000);
-		wmanager.addView(view, localLayoutParams);
+//		WindowManager.LayoutParams localLayoutParams = new WindowManager.LayoutParams();
+//		localLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
+//		localLayoutParams.gravity = Gravity.TOP;
+//		localLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+//				// this is to enable the notification to recieve touch events
+//				WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
+//				// Draws over status bar
+//				WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
+//
+//		// set the size of statusbar blocker
+//		localLayoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+//		localLayoutParams.height = (int) (35 * getResources().getDisplayMetrics().scaledDensity);
+//		localLayoutParams.format = PixelFormat.TRANSLUCENT;
+//
+//		view = new customViewGroup(this);
+//		view.setBackgroundColor(0x33000000);
+//		wmanager.addView(view, localLayoutParams);
 
 	}
 
@@ -1028,7 +1029,9 @@ public class Lock extends Activity implements OnGesturePerformedListener {
 		unregisterReceiver(batteryStatusReceiver);
 		
 		//Remove Custom StatusBar
-		wmanager.removeView(view);
+		if (view != null) {
+			wmanager.removeView(view);
+		}
 
 		
 		if(Pin.equals("")){

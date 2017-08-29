@@ -545,8 +545,8 @@ public class MainActivity extends ActionBarActivity {
 					PreferenceManager.getDefaultSharedPreferences(context).edit()
 						.putInt("PiLocker", 0)
 						.commit();
-					stopService(new Intent(MainActivity.this,LockerService.class));
-					startService(new Intent(MainActivity.this,LockerService.class));
+					stopService(new Intent(MainActivity.this, LockerService.class));
+					startService(new Intent(MainActivity.this, LockerService.class));
 					save("on", "false");
 					secret.setEnabled(false);
 					skip.setEnabled(false);

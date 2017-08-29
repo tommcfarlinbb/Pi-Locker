@@ -109,16 +109,16 @@ public class LockerService extends Service {
 		}
 	}
 
-	
+
 	private BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			
+
 			TelephonyManager ts = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
 			int callState = ts.getCallState();
-			
+
 			if (callState == TelephonyManager.CALL_STATE_IDLE) {
 
 				startActivity(new Intent(LockerService.this, Lock.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
@@ -128,19 +128,19 @@ public class LockerService extends Service {
 		}
 
 	};
-	
+
 	private BroadcastReceiver mRestore = new BroadcastReceiver() {
 
-		@Override	
+		@Override
 		public void onReceive(Context context, Intent intent) {
-			
+
 			try{
-				
+
 			unregisterReceiver(mReceiver);
 			mKeyguardLock.reenableKeyguard();
-			
+
 			}catch(Exception e){
-				
+
 				e.printStackTrace();
 			}
 		}
@@ -173,7 +173,7 @@ public class LockerService extends Service {
 		spf = PreferenceManager.getDefaultSharedPreferences(this);
 		on = spf.getString("on", "true");
 		
-		if(on.equals("true")){
+		if (on.equals("true")){
 			
 			startService(new Intent(LockerService.this , LockerService.class));
 			
